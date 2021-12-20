@@ -1,0 +1,18 @@
+body {
+  background-color: #edebed;
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  background-color: #562b81;
+}
+
+h2,
+h3 {
+  font-family: "Proza Libre", sans-serif;
+}
+
+header h2 {
+  color: white;
+  font-weight: normal;
+}
