@@ -5,14 +5,59 @@ body {
 
 header {
   background-color: #562b81;
+  color: white;
 }
 
-h2,
-h3 {
+h1,
+h2 {
   font-family: "Proza Libre", sans-serif;
 }
 
 header h2 {
-  color: white;
   font-weight: normal;
+}
+
+label,
+input,
+textarea {
+  width: 100%;
+}
+
+input,
+textarea {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+}
+
+input:focus,
+textarea:focus {
+  border: 2px solid #562b81;
+  outline: none;
+}
+
+#image {
+  border: none;
+}
+
+label {
+  font-size: 1rem;
+  font-family: "Proza Libre", sans-serif;
+  font-weight: bold;
+}
+
+button {
+  font-size: 1rem;
+  color: white;
+  background-color: #562b81;
+  border-radius: 5px;
+  border-style: none;
+  padding: 0.5rem 0.75rem;
+}
+
+.align-right {
+  text-align: right;
 }

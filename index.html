@@ -10,7 +10,7 @@
     crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
-  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Proza+Libre:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -19,7 +19,9 @@
   <header>
     <div class="container">
       <div class="row">
-        <h2 class="header-text">Code Journal</h2>
+        <div class="column-full">
+          <h2 class="header-text">Code Journal</h2>
+        </div>
       </div>
     </div>
   </header>
@@ -27,6 +29,37 @@
   <main>
     <div class="container">
       <div data-view="entry-form">
+        <form id="journal-entry-form">
+          <div class="row">
+            <div class="column-full">
+              <h1>New Entry</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="image-container column-full column-half">
+              <label>
+                <input id="image" name="image" type="image" alt="Journal Image" src="images/placeholder-image-square.jpg" />
+              </label>
+            </div>
+            <div class="column-full column-half">
+              <label for="entry-title">Title</label>
+              <input id="entry-title" name="title" type="text"/>
+              <label for="phot-url">Photo URL</label>
+              <input id="photo-url" name="photo-url" type="url" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full">
+              <label for="entry-notes">Notes</label>
+              <textarea id="entry-notes" name="notes" rows="6"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="column-full align-right">
+              <button type="submit">SAVE</button>
+            </div>
+          </div>
+        </form>
 
       </div>
     </div>
