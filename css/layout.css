@@ -40,3 +40,16 @@
 .bottom-margin {
   margin-bottom: 1rem;
 }
+
+.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
