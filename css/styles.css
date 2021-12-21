@@ -1,0 +1,58 @@
+body {
+  background-color: #edebed;
+  font-family: "Open Sans", sans-serif;
+}
+
+header {
+  background-color: #562b81;
+  color: white;
+}
+
+h1,
+h2 {
+  font-family: "Proza Libre", sans-serif;
+}
+
+header h2 {
+  font-weight: normal;
+}
+
+label,
+input,
+textarea {
+  width: 100%;
+}
+
+label {
+  font-family: "Proza Libre", sans-serif;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
+}
+
+input:focus,
+textarea:focus {
+  border: 2px solid #562b81;
+  outline: none;
+}
+
+#image {
+  border: none;
+}
+
+button {
+  font-size: 1rem;
+  color: white;
+  background-color: #562b81;
+  border-radius: 5px;
+  border-style: none;
+  padding: 0.5rem 0.75rem;
+}
