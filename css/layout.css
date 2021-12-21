@@ -32,3 +32,11 @@
     width: 50%;
   }
 }
+
+.align-right {
+  text-align: right;
+}
+
+.bottom-margin {
+  margin-bottom: 1rem;
+}

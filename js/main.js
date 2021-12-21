@@ -8,6 +8,7 @@ var $entryTitle = document.getElementById('entry-title');
 var $notes = document.getElementById('notes');
 
 // Listen for input events and update image src with direct URL from form entry:
+
 function imageInputSrcHandler(event) {
   $imageInput.setAttribute('src', $photoUrl.value);
 }
@@ -17,17 +18,11 @@ $photoUrl.addEventListener('input', imageInputSrcHandler);
 /* Listen for submit events and put form's input values into an object before
  resetting the form fields and image src: */
 
-var formEntryValues = {
-  photoUrl: $entryForm.value,
-  entryTitle: $entryTitle.value,
-  notes: $notes.value
-};
-
 function submitEventHandler(event) {
   event.preventDefault();
 
-  formEntryValues = {
-    photoUrl: $photoUrl.value,
+  var formEntryValues = {
+    photoUrl: $entryForm.value,
     entryTitle: $entryTitle.value,
     notes: $notes.value
   };

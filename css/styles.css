@@ -24,7 +24,6 @@ textarea {
 }
 
 label {
-  font-size: 1rem;
   font-family: "Proza Libre", sans-serif;
   font-weight: bold;
 }
@@ -56,8 +55,4 @@ button {
   border-radius: 5px;
   border-style: none;
   padding: 0.5rem 0.75rem;
-}
-
-.align-right {
-  text-align: right;
 }

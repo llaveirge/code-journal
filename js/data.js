@@ -8,7 +8,10 @@ var data = {
 };
 
 var previousEntriesJSON = localStorage.getItem('data-local-storage');
-data = JSON.parse(previousEntriesJSON);
+
+if (previousEntriesJSON !== null) {
+  data = JSON.parse(previousEntriesJSON);
+}
 
 function beforeunloadHandler(event) {
   var dataJSON = JSON.stringify(data);
