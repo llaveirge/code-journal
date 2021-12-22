@@ -31,6 +31,11 @@ function submitEventHandler(event) {
   data.nextEntryId++;
 
   data.entries.unshift(formEntryValues);
+  // NEW ADD FOR RENDERING ON SUBMIT
+  for (var i = data.entries.length - 1; i >= 0; i--) {
+    $entryListUl.prepend(renderEntries(data.entries[i]));
+  }
+  // END NEW FOR RENDERING
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
 }
