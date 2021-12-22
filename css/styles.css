@@ -84,7 +84,7 @@ li img {
   margin-top: 0;
 }
 
-.entries-link {
+#entries-link {
   text-decoration: none;
   color: inherit;
   font-size: 1.2rem;

@@ -83,3 +83,33 @@ function contentLoadedHandler(event) {
 }
 
 window.addEventListener('DOMContentLoaded', contentLoadedHandler);
+
+// View swapping for SPA between 'New Entry' div and 'Entries' div:
+
+var $entriesLink = document.getElementById('entries-link');
+var $viewNodeList = document.querySelectorAll('.view');
+var $newButton = document.getElementById('new-button');
+
+/* Listen for clicks on 'Entries' anchor and listen for clicks
+on 'New' button to swap 'hidden' class: */
+
+function viewSwap(event) {
+
+  // logic gate:
+  if (!event.target.matches('.link')) {
+    return;
+  }
+
+  var $targetDataView = event.target.getAttribute('data-view');
+
+  for (var viewNode of $viewNodeList) {
+    if (viewNode.getAttribute('data-view') === $targetDataView) {
+      viewNode.classList.remove('hidden');
+    } else {
+      viewNode.classList.add('hidden');
+    }
+  }
+}
+
+$entriesLink.addEventListener('click', viewSwap);
+$newButton.addEventListener('click', viewSwap);
