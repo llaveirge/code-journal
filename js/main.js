@@ -6,6 +6,8 @@ var $imageInput = document.getElementById('image');
 var $photoUrl = document.getElementById('photo-url');
 var $entryTitle = document.getElementById('entry-title');
 var $notes = document.getElementById('notes');
+var $entriesDiv = document.getElementById('entries-div');
+var $entryFormDiv = document.getElementById('entry-form-div');
 
 // Listen for input events and update image src with direct URL from form entry:
 
@@ -38,6 +40,11 @@ function submitEventHandler(event) {
   // END NEW FOR RENDERING
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
+
+  // NEW ADD FOR SHOW ENTRIES VIEW ON SUBMIT
+  $entryFormDiv.classList.add('hidden');
+  $entriesDiv.classList.remove('hidden');
+  // END NEW ADD FOR SHOW ENTRIES
 }
 
 $entryForm.addEventListener('submit', submitEventHandler);
