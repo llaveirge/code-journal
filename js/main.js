@@ -58,6 +58,7 @@ function renderEntries(entryObj) {
   $li.appendChild($columnDiv);
 
   var $h2Title = document.createElement('h2');
+  $h2Title.setAttribute('class', 'item-title');
   var $h2TitleText = document.createTextNode(entryObj.entryTitle);
   $h2Title.appendChild($h2TitleText);
   $columnDiv.appendChild($h2Title);

@@ -79,3 +79,7 @@ li img {
   border: none;
   border-radius: 5px;
 }
+
+.item-title {
+  margin-top: 0;
+}
