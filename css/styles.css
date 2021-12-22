@@ -59,5 +59,21 @@ button {
 
 .entry-list {
   list-style-type: none;
-  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.entry-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+li img {
+  width: 100%;
+}
+
+.item-image {
+  object-fit: cover;
+  object-position: 50% 50%;
 }
