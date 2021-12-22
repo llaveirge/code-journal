@@ -31,14 +31,13 @@ function submitEventHandler(event) {
   data.nextEntryId++;
 
   data.entries.unshift(formEntryValues);
-  // MAY NEED TO PUT PREPPEND AND RENDER HERE
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
 }
 
 $entryForm.addEventListener('submit', submitEventHandler);
 
-// Unordered List:
+// Return a DOM Tree for each journal entry:
 
 function renderEntries(entryObj) {
   var $li = document.createElement('li');
@@ -59,12 +58,12 @@ function renderEntries(entryObj) {
   $li.appendChild($columnDiv);
 
   var $h2Title = document.createElement('h2');
-  var $h2TitleText = document.createTextNode(obj.entryTitle);
+  var $h2TitleText = document.createTextNode(entryObj.entryTitle);
   $h2Title.appendChild($h2TitleText);
   $columnDiv.appendChild($h2Title);
 
   var $pNotes = document.createElement('p');
-  var $pNotesText = document.createTextNode(obj.notes);
+  var $pNotesText = document.createTextNode(entryObj.notes);
   $pNotes.appendChild($pNotesText);
   $columnDiv.appendChild($pNotes);
 
@@ -73,11 +72,13 @@ function renderEntries(entryObj) {
 
 var $entryListUl = document.querySelector('.entry-list');
 
-var obj = {
-  entryTitle: 'Title',
-  nextEntryId: 1,
-  notes: 'The Document Object Model (DOM) is a cross-platform and language-independent interface that treats an XML or HTML document as a tree structure wherein each node is an object representing a part of the document. The DOM represents a document with a logical tree. Each branch of the tree ends in a node, and each node contains objects. \n\nDOM methods allow programmatic access to the tree; with them one can change the structure, style or content of a document.',
-  photoUrl: 'https://cms-assets.tutsplus.com/cdn-cgi/image/width=360/uploads/users/423/posts/23393/final_image/data-structures-4-of-4.jpg'
-};
+/* Listen for DOMContentLoaded and use a loop to create a DOM
+tree for each journal entry in the data model and prepend to page */
 
-$entryListUl.prepend(renderEntries(obj));
+function contentLoadedHandler(event) {
+  for (var i = data.entries.length - 1; i >= 0; i--) {
+    $entryListUl.prepend(renderEntries(data.entries[i]));
+  }
+}
+
+window.addEventListener('DOMContentLoaded', contentLoadedHandler);
