@@ -49,6 +49,10 @@
   align-items: center;
 }
 
+.align-items-baseline {
+  align-items: baseline;
+}
+
 .space-between {
   justify-content: space-between;
 }
