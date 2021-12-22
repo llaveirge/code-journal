@@ -66,7 +66,7 @@ button {
 .entry-item {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem 0;
+  margin-bottom: 3rem;
 }
 
 li img {
@@ -76,4 +76,6 @@ li img {
 .item-image {
   object-fit: cover;
   object-position: 50% 50%;
+  border: none;
+  border-radius: 5px;
 }
