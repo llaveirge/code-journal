@@ -87,6 +87,16 @@ function renderEntries(entryObj) {
 
 var $entryListUl = document.querySelector('.entry-list');
 
+/* Listen for clicks on the icon element of ul and show entry form */
+$entryListUl.addEventListener('click', function (event) {
+  // logic gate:
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+  $entriesDiv.classList.add('hidden');
+  $entryFormDiv.classList.remove('hidden');
+});
+
 /* Listen for DOMContentLoaded and use a loop to create a DOM
 tree for each journal entry in the data model and prepend to page */
 
