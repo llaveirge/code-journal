@@ -51,6 +51,7 @@ $entryForm.addEventListener('submit', submitEventHandler);
 function renderEntries(entryObj) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'entry-item');
+  $li.setAttribute('data-entry-id', entryObj.nextEntryId);
 
   var $divEntryImgCont = document.createElement('div');
   $divEntryImgCont.setAttribute('class', 'bottom-margin column-full column-half');
