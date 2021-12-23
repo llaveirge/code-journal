@@ -53,7 +53,7 @@ function renderEntries(entryObj) {
   $li.setAttribute('class', 'entry-item');
 
   var $divEntryImgCont = document.createElement('div');
-  $divEntryImgCont.setAttribute('class', 'item-image-cont column-full column-half');
+  $divEntryImgCont.setAttribute('class', 'bottom-margin column-full column-half');
   $li.appendChild($divEntryImgCont);
 
   var $entryImg = document.createElement('img');

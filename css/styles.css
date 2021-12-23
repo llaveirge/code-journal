@@ -58,7 +58,6 @@ button {
 }
 
 .entry-list {
-  list-style-type: none;
   margin: 0 auto;
   padding: 0;
 }
@@ -67,10 +66,6 @@ button {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 3rem;
-}
-
-.item-image-cont {
-  padding-bottom: 1rem;
 }
 
 li img {
