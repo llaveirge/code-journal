@@ -8,6 +8,7 @@ var $entryTitle = document.getElementById('entry-title');
 var $notes = document.getElementById('notes');
 var $entriesDiv = document.getElementById('entries-div');
 var $entryFormDiv = document.getElementById('entry-form-div');
+var $entryFormPageTitle = document.getElementById('entry-form-page-title');
 
 // Listen for input events and update image src with direct URL from form entry:
 
@@ -108,6 +109,20 @@ $entryListUl.addEventListener('click', function (event) {
       }
     }
   }
+
+  // Pre-populate the entry form with the clicked entry's data:
+
+  $entryTitle.value = data.editing.entryTitle;
+  $photoUrl.value = data.editing.photoUrl;
+  $imageInput.setAttribute('src', $photoUrl.value);
+  $notes.value = data.editing.notes;
+
+  // Change page title:
+  var $editTitleText = document.createTextNode('Edit Entry');
+  var $editTitle = document.createElement('h1');
+  $editTitle.setAttribute = ('id', 'edit-entry-page-title');
+  $editTitle.appendChild($editTitleText);
+  $entryFormPageTitle.replaceWith($editTitle);
 
   $entriesDiv.classList.add('hidden');
   $entryFormDiv.classList.remove('hidden');
