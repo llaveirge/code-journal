@@ -86,13 +86,29 @@ function renderEntries(entryObj) {
 }
 
 var $entryListUl = document.querySelector('.entry-list');
+var $clickedEntry;
 
 /* Listen for clicks on the icon element of ul and show entry form */
+
 $entryListUl.addEventListener('click', function (event) {
   // logic gate:
   if (event.target.tagName !== 'I') {
     return;
   }
+
+  // Get entry ID number from element attribute:
+  $clickedEntry = event.target.closest('.entry-item');
+  var idNum = +$clickedEntry.getAttribute('data-entry-id');
+
+  // Locate correct entry object by entry ID number:
+  for (var entry of data.entries) {
+    for (var key in entry) {
+      if (entry[key] === idNum) {
+        data.editing = entry;
+      }
+    }
+  }
+
   $entriesDiv.classList.add('hidden');
   $entryFormDiv.classList.remove('hidden');
 });
