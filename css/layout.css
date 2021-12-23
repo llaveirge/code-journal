@@ -40,3 +40,19 @@
 .bottom-margin {
   margin-bottom: 1rem;
 }
+
+.display-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-baseline {
+  align-items: baseline;
+}
+
+.space-between {
+  justify-content: space-between;
+}

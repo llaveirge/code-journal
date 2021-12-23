@@ -1,5 +1,5 @@
 body {
-  background-color: #edebed;
+  background-color: #f0f0f0;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -34,7 +34,7 @@ textarea {
   margin-top: 0.5rem;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
-  border: 1px solid #b4b4b4;
+  border: 1px solid #b6b6b6;
   border-radius: 5px;
 }
 
@@ -55,4 +55,37 @@ button {
   border-radius: 5px;
   border-style: none;
   padding: 0.5rem 0.75rem;
+}
+
+.entry-list {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.entry-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+li img {
+  width: 100%;
+}
+
+.item-image {
+  object-fit: cover;
+  object-position: 50% 50%;
+  border: none;
+  border-radius: 5px;
+}
+
+.item-title {
+  margin-top: 0;
+}
+
+#entries-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.2rem;
+  padding-left: 1.75rem;
 }

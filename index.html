@@ -20,8 +20,11 @@
   <header>
     <div class="container">
       <div class="row">
-        <div class="column-full">
+        <div class="column-full display-flex align-items-baseline">
           <h2 class="header-text">Code Journal</h2>
+          <nav>
+            <a href="#" class="link" data-view="entries" id="entries-link">Entries</a>
+          </nav>
         </div>
       </div>
     </div>
@@ -29,7 +32,7 @@
 
   <main>
     <div class="container">
-      <div data-view="entry-form">
+      <div id="entry-form-div" data-view="entry-form" class="view">
         <form id="journal-entry-form">
           <div class="row">
             <div class="column-full">
@@ -61,6 +64,16 @@
             </div>
           </div>
         </form>
+      </div>
+      <div id="entries-div" data-view="entries" class="view hidden">
+        <div class="row">
+          <div class="column-full display-flex align-items-center space-between">
+            <h1 class="entries-heading">Entries</h1>
+            <button id="new-button" class="link" data-view="entry-form" type="button">NEW</button>
+          </div>
+        </div>
+        <ul class="entry-list">
+        </ul>
       </div>
     </div>
   </main>
