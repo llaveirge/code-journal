@@ -33,6 +33,21 @@
   }
 }
 
+.entry-list {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.entry-item {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.item-title {
+  margin-top: 0;
+}
+
 .align-right {
   text-align: right;
 }
