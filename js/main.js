@@ -30,14 +30,30 @@ function submitEventHandler(event) {
     notes: $notes.value
   };
 
-  // Update the data model:
-  formEntryValues.nextEntryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(formEntryValues);
+  // Conditionally update the data model based on data.editing value:
+  if (data.editing !== null) {
+    formEntryValues.nextEntryId = data.editing.nextEntryId;
+    // if the data model has this entry already, update the entry object's values:
+    for (var entry of data.entries) {
+      for (var key in entry) {
+        if (entry[key] === formEntryValues.nextEntryId) {
+          entry.photoUrl = formEntryValues.photoUrl;
+          entry.entryTitle = formEntryValues.entryTitle;
+          entry.notes = formEntryValues.notes;
+        }
+      }
+    }
 
-  // Show the newest post on the entries page without needing to reload:
-  $entryListUl.prepend(renderEntries(data.entries[0]));
+    data.editing = null;
+  } else {
 
+    formEntryValues.nextEntryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(formEntryValues);
+
+    // Show the newest post on the entries page without needing to reload:
+    $entryListUl.prepend(renderEntries(data.entries[0]));
+  }
   // Reset form fields and show entries list:
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
@@ -173,6 +189,11 @@ function viewSwap(event) {
       viewNode.classList.add('hidden');
     }
   }
+
+  // if (event.target === $newButton) {
+  //   console.log("it's the new button!");
+  // }
+
 }
 
 $entriesLink.addEventListener('click', viewSwap);
