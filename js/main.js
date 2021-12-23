@@ -9,6 +9,7 @@ var $notes = document.getElementById('notes');
 var $entriesDiv = document.getElementById('entries-div');
 var $entryFormDiv = document.getElementById('entry-form-div');
 var $entryFormPageTitle = document.getElementById('entry-form-page-title');
+var ulnodes = document.getElementsByTagName('li');
 
 // Listen for input events and update image src with direct URL from form entry:
 
@@ -43,8 +44,13 @@ function submitEventHandler(event) {
         }
       }
     }
+    // Show edited entry on the entries page without needing to reload:
+    var editedIdNum = formEntryValues.nextEntryId;
+    var editedEntry = renderEntries(data.entries[data.entries.length - editedIdNum]);
+    ulnodes[ulnodes.length - editedIdNum].replaceWith(editedEntry);
 
     data.editing = null;
+
   } else {
 
     formEntryValues.nextEntryId = data.nextEntryId;
@@ -54,6 +60,7 @@ function submitEventHandler(event) {
     // Show the newest post on the entries page without needing to reload:
     $entryListUl.prepend(renderEntries(data.entries[0]));
   }
+
   // Reset form fields and show entries list:
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
@@ -189,11 +196,6 @@ function viewSwap(event) {
       viewNode.classList.add('hidden');
     }
   }
-
-  // if (event.target === $newButton) {
-  //   console.log("it's the new button!");
-  // }
-
 }
 
 $entriesLink.addEventListener('click', viewSwap);
