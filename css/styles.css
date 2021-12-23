@@ -89,3 +89,8 @@ li img {
   font-size: 1.2rem;
   padding-left: 1.75rem;
 }
+
+i {
+  float: right;
+  color: #562b81;
+}

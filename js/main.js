@@ -72,6 +72,10 @@ function renderEntries(entryObj) {
   $h2Title.appendChild($h2TitleText);
   $columnDiv.appendChild($h2Title);
 
+  var $editIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'fas fa-pen');
+  $h2Title.appendChild($editIcon);
+
   var $pNotes = document.createElement('p');
   var $pNotesText = document.createTextNode(entryObj.notes);
   $pNotes.appendChild($pNotesText);
