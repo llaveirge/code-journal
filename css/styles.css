@@ -1,5 +1,5 @@
 body {
-  background-color: #edebed;
+  background-color: #f0f0f0;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -34,7 +34,7 @@ textarea {
   margin-top: 0.5rem;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
-  border: 1px solid #b4b4b4;
+  border: 1px solid #b6b6b6;
   border-radius: 5px;
 }
 
@@ -67,6 +67,10 @@ button {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 3rem;
+}
+
+.item-image-cont {
+  padding-bottom: 1rem;
 }
 
 li img {

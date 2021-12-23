@@ -7,6 +7,7 @@ var data = {
   nextEntryId: 1
 };
 
+var $viewNodeListData = document.querySelectorAll('.view');
 var previousEntriesJSON = localStorage.getItem('data-local-storage');
 
 if (previousEntriesJSON !== null) {
@@ -14,6 +15,13 @@ if (previousEntriesJSON !== null) {
 }
 
 function beforeunloadHandler(event) {
+
+  for (var viewNode of $viewNodeListData) {
+    if (!viewNode.classList.contains('hidden')) {
+      data.view = viewNode.getAttribute('data-view');
+    }
+  }
+
   var dataJSON = JSON.stringify(data);
   localStorage.setItem('data-local-storage', dataJSON);
 }

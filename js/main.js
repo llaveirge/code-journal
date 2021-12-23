@@ -33,18 +33,15 @@ function submitEventHandler(event) {
   data.nextEntryId++;
 
   data.entries.unshift(formEntryValues);
-  // NEW ADD FOR RENDERING ON SUBMIT
+
   for (var i = data.entries.length - 1; i >= 0; i--) {
     $entryListUl.prepend(renderEntries(data.entries[i]));
   }
-  // END NEW FOR RENDERING
+
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
-
-  // NEW ADD FOR SHOW ENTRIES VIEW ON SUBMIT
   $entryFormDiv.classList.add('hidden');
   $entriesDiv.classList.remove('hidden');
-  // END NEW ADD FOR SHOW ENTRIES
 }
 
 $entryForm.addEventListener('submit', submitEventHandler);
@@ -91,6 +88,14 @@ tree for each journal entry in the data model and prepend to page */
 function contentLoadedHandler(event) {
   for (var i = data.entries.length - 1; i >= 0; i--) {
     $entryListUl.prepend(renderEntries(data.entries[i]));
+  }
+
+  if (data.view === 'entries') {
+    $entriesDiv.classList.remove('hidden');
+    $entryFormDiv.classList.add('hidden');
+  } else if (data.view === 'entry-form') {
+    $entriesDiv.classList.add('hidden');
+    $entryFormDiv.classList.remove('hidden');
   }
 }
 
