@@ -16,6 +16,7 @@ if (previousEntriesJSON !== null) {
 
 function beforeunloadHandler(event) {
 
+  // Set the data.view value to the current visible section:
   for (var viewNode of $viewNodeListData) {
     if (!viewNode.classList.contains('hidden')) {
       data.view = viewNode.getAttribute('data-view');

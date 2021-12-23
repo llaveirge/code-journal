@@ -29,15 +29,15 @@ function submitEventHandler(event) {
     notes: $notes.value
   };
 
+  // Update the data model:
   formEntryValues.nextEntryId = data.nextEntryId;
   data.nextEntryId++;
-
   data.entries.unshift(formEntryValues);
 
-  for (var i = data.entries.length - 1; i >= 0; i--) {
-    $entryListUl.prepend(renderEntries(data.entries[i]));
-  }
+  // Show the newest post on the entries page without needing to reload:
+  $entryListUl.prepend(renderEntries(data.entries[0]));
 
+  // Reset form fields and show entries list:
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
   $entryFormDiv.classList.add('hidden');
@@ -90,6 +90,7 @@ function contentLoadedHandler(event) {
     $entryListUl.prepend(renderEntries(data.entries[i]));
   }
 
+  // Hide the appropriate section div based on data.view value:
   if (data.view === 'entries') {
     $entriesDiv.classList.remove('hidden');
     $entryFormDiv.classList.add('hidden');
