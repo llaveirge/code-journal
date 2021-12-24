@@ -204,7 +204,6 @@ function viewSwap(event) {
   if (event.target === $newButton) {
     $editTitle.replaceWith($entryFormPageTitle);
   }
-
 }
 
 $entriesLink.addEventListener('click', viewSwap);
