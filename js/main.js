@@ -216,7 +216,7 @@ $newButton.addEventListener('click', viewSwap);
 // Listen for clicks on the delete entry button and show confirmation modal:
 
 var $modal = document.getElementById('delete-modal');
-// var $cancelButton = document.getElementById('cancel-button');
+var $cancelButton = document.getElementById('cancel-button');
 // var $confirmButton = document.getElementById('confirm-button');
 
 function showModal(event) {
@@ -224,3 +224,11 @@ function showModal(event) {
 }
 
 $deleteButton.addEventListener('click', showModal);
+
+// Listen for clicks on cancel button and hide modal:
+
+function hideModal(event) {
+  $modal.classList.add('hidden');
+}
+
+$cancelButton.addEventListener('click', hideModal);
