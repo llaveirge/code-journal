@@ -212,3 +212,15 @@ function viewSwap(event) {
 
 $entriesLink.addEventListener('click', viewSwap);
 $newButton.addEventListener('click', viewSwap);
+
+// Listen for clicks on the delete entry button and show confirmation modal:
+
+var $modal = document.getElementById('delete-modal');
+// var $cancelButton = document.getElementById('cancel-button');
+// var $confirmButton = document.getElementById('confirm-button');
+
+function showModal(event) {
+  $modal.classList.remove('hidden');
+}
+
+$deleteButton.addEventListener('click', showModal);

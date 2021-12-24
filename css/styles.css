@@ -96,3 +96,30 @@ i {
 i:hover {
   color: #562b81;
 }
+
+#delete-modal {
+  background-color: #292929c2;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 5px;
+  align-items: center;
+  padding: 2rem;
+  box-shadow: 1px 5px 5px #292929;
+}
+
+.modal-text {
+  font-weight: 600;
+  padding-bottom: 2rem;
+}
+
+#confirm-button {
+  background-color: #dc2626;
+}
+
+#cancel-button {
+  background-color: #b6b6b6;
+  color: black;
+  font-weight: 600;
+}

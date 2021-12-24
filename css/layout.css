@@ -71,3 +71,13 @@
 .space-between {
   justify-content: space-between;
 }
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+}
