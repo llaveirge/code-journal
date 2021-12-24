@@ -9,7 +9,13 @@ var $notes = document.getElementById('notes');
 var $entriesDiv = document.getElementById('entries-div');
 var $entryFormDiv = document.getElementById('entry-form-div');
 var $entryFormPageTitle = document.getElementById('entry-form-page-title');
-var ulnodes = document.getElementsByTagName('li');
+var ulNodes = document.getElementsByTagName('li');
+
+// Edit Entry page title creation:
+var $editTitleText = document.createTextNode('Edit Entry');
+var $editTitle = document.createElement('h1');
+$editTitle.setAttribute('id', 'edit-entry-page-title');
+$editTitle.appendChild($editTitleText);
 
 // Listen for input events and update image src with direct URL from form entry:
 
@@ -47,7 +53,7 @@ function submitEventHandler(event) {
     // Show edited entry on the entries page without needing to reload:
     var editedIdNum = formEntryValues.nextEntryId;
     var editedEntry = renderEntries(data.entries[data.entries.length - editedIdNum]);
-    ulnodes[ulnodes.length - editedIdNum].replaceWith(editedEntry);
+    ulNodes[ulNodes.length - editedIdNum].replaceWith(editedEntry);
 
     data.editing = null;
 
@@ -141,10 +147,7 @@ $entryListUl.addEventListener('click', function (event) {
   $notes.value = data.editing.notes;
 
   // Change page title:
-  var $editTitleText = document.createTextNode('Edit Entry');
-  var $editTitle = document.createElement('h1');
-  $editTitle.setAttribute = ('id', 'edit-entry-page-title');
-  $editTitle.appendChild($editTitleText);
+
   $entryFormPageTitle.replaceWith($editTitle);
 
   $entriesDiv.classList.add('hidden');
@@ -196,6 +199,12 @@ function viewSwap(event) {
       viewNode.classList.add('hidden');
     }
   }
+
+  // Change page title back to new entry:
+  if (event.target === $newButton) {
+    $editTitle.replaceWith($entryFormPageTitle);
+  }
+
 }
 
 $entriesLink.addEventListener('click', viewSwap);
