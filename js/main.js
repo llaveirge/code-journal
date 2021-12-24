@@ -8,6 +8,14 @@ var $entryTitle = document.getElementById('entry-title');
 var $notes = document.getElementById('notes');
 var $entriesDiv = document.getElementById('entries-div');
 var $entryFormDiv = document.getElementById('entry-form-div');
+var $entryFormPageTitle = document.getElementById('entry-form-page-title');
+var ulNodes = document.getElementsByTagName('li');
+
+// Edit Entry page title creation:
+var $editTitleText = document.createTextNode('Edit Entry');
+var $editTitle = document.createElement('h1');
+$editTitle.setAttribute('id', 'edit-entry-page-title');
+$editTitle.appendChild($editTitleText);
 
 // Listen for input events and update image src with direct URL from form entry:
 
@@ -29,13 +37,35 @@ function submitEventHandler(event) {
     notes: $notes.value
   };
 
-  // Update the data model:
-  formEntryValues.nextEntryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(formEntryValues);
+  // Conditionally update the data model based on data.editing value:
+  if (data.editing !== null) {
+    formEntryValues.nextEntryId = data.editing.nextEntryId;
+    // if the data model has this entry already, update the entry object's values:
+    for (var entry of data.entries) {
+      for (var key in entry) {
+        if (entry[key] === formEntryValues.nextEntryId) {
+          entry.photoUrl = formEntryValues.photoUrl;
+          entry.entryTitle = formEntryValues.entryTitle;
+          entry.notes = formEntryValues.notes;
+        }
+      }
+    }
+    // Show edited entry on the entries page without needing to reload:
+    var editedIdNum = formEntryValues.nextEntryId;
+    var editedEntry = renderEntries(data.entries[data.entries.length - editedIdNum]);
+    ulNodes[ulNodes.length - editedIdNum].replaceWith(editedEntry);
 
-  // Show the newest post on the entries page without needing to reload:
-  $entryListUl.prepend(renderEntries(data.entries[0]));
+    data.editing = null;
+
+  } else {
+
+    formEntryValues.nextEntryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(formEntryValues);
+
+    // Show the newest post on the entries page without needing to reload:
+    $entryListUl.prepend(renderEntries(data.entries[0]));
+  }
 
   // Reset form fields and show entries list:
   $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
@@ -51,6 +81,7 @@ $entryForm.addEventListener('submit', submitEventHandler);
 function renderEntries(entryObj) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'entry-item');
+  $li.setAttribute('data-entry-id', entryObj.nextEntryId);
 
   var $divEntryImgCont = document.createElement('div');
   $divEntryImgCont.setAttribute('class', 'bottom-margin column-full column-half');
@@ -72,6 +103,10 @@ function renderEntries(entryObj) {
   $h2Title.appendChild($h2TitleText);
   $columnDiv.appendChild($h2Title);
 
+  var $editIcon = document.createElement('i');
+  $editIcon.setAttribute('class', 'fas fa-pen');
+  $h2Title.appendChild($editIcon);
+
   var $pNotes = document.createElement('p');
   var $pNotesText = document.createTextNode(entryObj.notes);
   $pNotes.appendChild($pNotesText);
@@ -81,6 +116,43 @@ function renderEntries(entryObj) {
 }
 
 var $entryListUl = document.querySelector('.entry-list');
+var $clickedEntry;
+
+/* Listen for clicks on the icon element of ul and show entry form */
+
+$entryListUl.addEventListener('click', function (event) {
+  // logic gate:
+  if (event.target.tagName !== 'I') {
+    return;
+  }
+
+  // Get entry ID number from element attribute:
+  $clickedEntry = event.target.closest('.entry-item');
+  var idNum = +$clickedEntry.getAttribute('data-entry-id');
+
+  // Locate correct entry object by entry ID number:
+  for (var entry of data.entries) {
+    for (var key in entry) {
+      if (entry[key] === idNum) {
+        data.editing = entry;
+      }
+    }
+  }
+
+  // Pre-populate the entry form with the clicked entry's data:
+
+  $entryTitle.value = data.editing.entryTitle;
+  $photoUrl.value = data.editing.photoUrl;
+  $imageInput.setAttribute('src', $photoUrl.value);
+  $notes.value = data.editing.notes;
+
+  // Change page title:
+
+  $entryFormPageTitle.replaceWith($editTitle);
+
+  $entriesDiv.classList.add('hidden');
+  $entryFormDiv.classList.remove('hidden');
+});
 
 /* Listen for DOMContentLoaded and use a loop to create a DOM
 tree for each journal entry in the data model and prepend to page */
@@ -126,6 +198,11 @@ function viewSwap(event) {
     } else {
       viewNode.classList.add('hidden');
     }
+  }
+
+  // Change page title back to new entry:
+  if (event.target === $newButton) {
+    $editTitle.replaceWith($entryFormPageTitle);
   }
 }
 

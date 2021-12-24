@@ -57,17 +57,6 @@ button {
   padding: 0.5rem 0.75rem;
 }
 
-.entry-list {
-  margin: 0 auto;
-  padding: 0;
-}
-
-.entry-item {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 3rem;
-}
-
 li img {
   width: 100%;
 }
@@ -79,13 +68,18 @@ li img {
   border-radius: 5px;
 }
 
-.item-title {
-  margin-top: 0;
-}
-
 #entries-link {
   text-decoration: none;
   color: inherit;
   font-size: 1.2rem;
   padding-left: 1.75rem;
+}
+
+i {
+  float: right;
+  color: #765e8d;
+}
+
+i:hover {
+  color: #562b81;
 }
