@@ -19,7 +19,6 @@ $editTitle.setAttribute('id', 'edit-entry-page-title');
 $editTitle.appendChild($editTitleText);
 
 // Listen for input events and update image src with direct URL from form entry:
-
 function imageInputSrcHandler(event) {
   $imageInput.setAttribute('src', $photoUrl.value);
 }
@@ -28,7 +27,6 @@ $photoUrl.addEventListener('input', imageInputSrcHandler);
 
 /* Listen for submit events and put form's input values into an object before
  resetting the form fields and image src: */
-
 function submitEventHandler(event) {
   event.preventDefault();
 
@@ -51,6 +49,7 @@ function submitEventHandler(event) {
         }
       }
     }
+
     // Show edited entry on the entries page without needing to reload:
     var editedIdNum = formEntryValues.nextEntryId;
     var editedEntry = renderEntries(data.entries[data.entries.length - editedIdNum]);
@@ -78,7 +77,6 @@ function submitEventHandler(event) {
 $entryForm.addEventListener('submit', submitEventHandler);
 
 // Return a DOM Tree for each journal entry:
-
 function renderEntries(entryObj) {
   var $li = document.createElement('li');
   $li.setAttribute('class', 'entry-item');
@@ -120,8 +118,8 @@ var $entryListUl = document.querySelector('.entry-list');
 var $clickedEntry;
 
 /* Listen for clicks on the icon element of ul and show entry form */
-
 $entryListUl.addEventListener('click', function (event) {
+
   // logic gate:
   if (event.target.tagName !== 'I') {
     return;
@@ -141,17 +139,15 @@ $entryListUl.addEventListener('click', function (event) {
   }
 
   // Pre-populate the entry form with the clicked entry's data:
-
   $entryTitle.value = data.editing.entryTitle;
   $photoUrl.value = data.editing.photoUrl;
   $imageInput.setAttribute('src', $photoUrl.value);
   $notes.value = data.editing.notes;
 
   // Change page title:
-
   $entryFormPageTitle.replaceWith($editTitle);
 
-  // Show delete click target:
+  // Show delete button:
   $deleteButton.classList.remove('hidden');
 
   $entriesDiv.classList.add('hidden');
@@ -160,7 +156,6 @@ $entryListUl.addEventListener('click', function (event) {
 
 /* Listen for DOMContentLoaded and use a loop to create a DOM
 tree for each journal entry in the data model and prepend to page */
-
 function contentLoadedHandler(event) {
   for (var i = data.entries.length - 1; i >= 0; i--) {
     $entryListUl.prepend(renderEntries(data.entries[i]));
@@ -179,14 +174,12 @@ function contentLoadedHandler(event) {
 window.addEventListener('DOMContentLoaded', contentLoadedHandler);
 
 // View swapping for SPA between 'New Entry' div and 'Entries' div:
-
 var $entriesLink = document.getElementById('entries-link');
 var $viewNodeList = document.querySelectorAll('.view');
 var $newButton = document.getElementById('new-button');
 
 /* Listen for clicks on 'Entries' anchor and listen for clicks
 on 'New' button to swap 'hidden' class: */
-
 function viewSwap(event) {
 
   // logic gate:
@@ -214,10 +207,9 @@ $entriesLink.addEventListener('click', viewSwap);
 $newButton.addEventListener('click', viewSwap);
 
 // Listen for clicks on the delete entry button and show confirmation modal:
-
 var $modal = document.getElementById('delete-modal');
 var $cancelButton = document.getElementById('cancel-button');
-// var $confirmButton = document.getElementById('confirm-button');
+var $confirmButton = document.getElementById('confirm-button');
 
 function showModal(event) {
   $modal.classList.remove('hidden');
@@ -232,3 +224,33 @@ function hideModal(event) {
 }
 
 $cancelButton.addEventListener('click', hideModal);
+
+// Listen for clicks on the confirm button and delete entry:
+
+function deleteEntry(event) {
+
+  // Logic gate:
+  if (!event.target.matches('#confirm-button')) {
+    return;
+  }
+
+  $entryListUl.removeChild($clickedEntry);
+
+  // Locate correct entry object by entry ID number:
+  // var idNum = +$clickedEntry.getAttribute('data-entry-id');
+
+  // for (var entry of data.entries) {
+  //   for (var key in entry) {
+  //     if (entry[key] === idNum) {
+  //       data.entries.splice((data.entries.length - idNum), 1);
+  //       // MESSES UP THE ID NUMBER ASSIGNMENT AND SYSTEM - NEED TO UPDATE //
+  //     }
+  //   }
+  // }
+
+  $modal.classList.add('hidden');
+  $entryFormDiv.classList.add('hidden');
+  $entriesDiv.classList.remove('hidden');
+}
+
+$confirmButton.addEventListener('click', deleteEntry);
