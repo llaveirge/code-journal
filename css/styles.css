@@ -57,6 +57,19 @@ button {
   padding: 0.5rem 0.75rem;
 }
 
+#delete-button {
+  float: left;
+  background: none;
+  color: #e47b74;
+  text-decoration: underline;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+#delete-button:hover {
+  color: #dc2626;
+}
+
 li img {
   width: 100%;
 }

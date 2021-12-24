@@ -10,6 +10,7 @@ var $entriesDiv = document.getElementById('entries-div');
 var $entryFormDiv = document.getElementById('entry-form-div');
 var $entryFormPageTitle = document.getElementById('entry-form-page-title');
 var ulNodes = document.getElementsByTagName('li');
+var $deleteButton = document.getElementById('delete-button');
 
 // Edit Entry page title creation:
 var $editTitleText = document.createTextNode('Edit Entry');
@@ -149,6 +150,9 @@ $entryListUl.addEventListener('click', function (event) {
   // Change page title:
 
   $entryFormPageTitle.replaceWith($editTitle);
+
+  // Show delete click target:
+  $deleteButton.classList.remove('hidden');
 
   $entriesDiv.classList.add('hidden');
   $entryFormDiv.classList.remove('hidden');
