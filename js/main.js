@@ -11,6 +11,8 @@ var $entryFormDiv = document.getElementById('entry-form-div');
 var $entryFormPageTitle = document.getElementById('entry-form-page-title');
 var ulNodes = document.getElementsByTagName('li');
 var $deleteButton = document.getElementById('delete-button');
+var $noEntryText = document.getElementById('no-entries');
+var $noEntryTextContainer = $noEntryText.parentNode;
 
 // Edit Entry page title creation:
 var $editTitleText = document.createTextNode('Edit Entry');
@@ -72,6 +74,11 @@ function submitEventHandler(event) {
   $entryForm.reset();
   $entryFormDiv.classList.add('hidden');
   $entriesDiv.classList.remove('hidden');
+
+  // if there is one entry, remove the 'no entries...' text from the entries page:
+  if (ulNodes.length === 1) {
+    $noEntryTextContainer.removeChild($noEntryText);
+  }
 }
 
 $entryForm.addEventListener('submit', submitEventHandler);
@@ -169,6 +176,11 @@ function contentLoadedHandler(event) {
   } else if (data.view === 'entry-form') {
     $entriesDiv.classList.add('hidden');
     $entryFormDiv.classList.remove('hidden');
+  }
+
+  // if there are any entries, remove the 'no entries...' text from the entries page:
+  if (ulNodes.length > 0) {
+    $noEntryTextContainer.removeChild($noEntryText);
   }
 }
 
@@ -271,6 +283,11 @@ function deleteEntry(event) {
   $modal.classList.add('hidden');
   $entryFormDiv.classList.add('hidden');
   $entriesDiv.classList.remove('hidden');
+
+  // if there are no entries left, add the 'no entries...' text to the entries page:
+  if (ulNodes.length === 0) {
+    $noEntryTextContainer.appendChild($noEntryText);
+  }
 
 }
 
