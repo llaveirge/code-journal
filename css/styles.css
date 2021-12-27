@@ -17,6 +17,12 @@ header h2 {
   font-weight: normal;
 }
 
+h2.entries-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-block-start: 1.4rem;
+}
+
 label,
 input,
 textarea {
