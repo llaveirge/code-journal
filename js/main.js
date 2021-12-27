@@ -150,6 +150,7 @@ $entryListUl.addEventListener('click', function (event) {
   // Show delete button:
   $deleteButton.classList.remove('hidden');
 
+  // Show entry form:
   $entriesDiv.classList.add('hidden');
   $entryFormDiv.classList.remove('hidden');
 });
@@ -201,6 +202,13 @@ function viewSwap(event) {
   if (event.target === $newButton) {
     $editTitle.replaceWith($entryFormPageTitle);
   }
+
+  // Clear data.editing value if viewing entries and clear form data:
+  if (event.target === $entriesLink) {
+    data.editing = null;
+    $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $entryForm.reset();
+  }
 }
 
 $entriesLink.addEventListener('click', viewSwap);
@@ -218,7 +226,6 @@ function showModal(event) {
 $deleteButton.addEventListener('click', showModal);
 
 // Listen for clicks on cancel button and hide modal:
-
 function hideModal(event) {
   $modal.classList.add('hidden');
 }
@@ -226,7 +233,6 @@ function hideModal(event) {
 $cancelButton.addEventListener('click', hideModal);
 
 // Listen for clicks on the confirm button and delete entry:
-
 function deleteEntry(event) {
 
   // Logic gate:
@@ -237,20 +243,35 @@ function deleteEntry(event) {
   $entryListUl.removeChild($clickedEntry);
 
   // Locate correct entry object by entry ID number:
-  // var idNum = +$clickedEntry.getAttribute('data-entry-id');
+  var idNum = +$clickedEntry.getAttribute('data-entry-id');
+  var entryIndex = data.entries.length - idNum;
 
-  // for (var entry of data.entries) {
-  //   for (var key in entry) {
-  //     if (entry[key] === idNum) {
-  //       data.entries.splice((data.entries.length - idNum), 1);
-  //       // MESSES UP THE ID NUMBER ASSIGNMENT AND SYSTEM - NEED TO UPDATE //
-  //     }
-  //   }
-  // }
+  // Update the nextEntryID value of remaining entry objects in entries array:
+  for (var i = entryIndex; i >= 0; i--) {
+    data.entries[i].nextEntryId--;
+  }
 
+  // Delete entry object from data model:
+  data.entries.splice(entryIndex, 1);
+
+  // Correct the 'nextEntryID' property of the Data Model:
+  data.nextEntryId = data.entries.length + 1;
+
+  // Update the 'data-entry-id' attribute value for all line items:
+  for (var j = 0; j < ulNodes.length; j++) {
+    ulNodes[j].setAttribute('data-entry-id', data.entries[j].nextEntryId);
+  }
+
+  // reassign editing as null:
+  data.editing = null;
+
+  // Reset form fields and show entries list:
+  $imageInput.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $entryForm.reset();
   $modal.classList.add('hidden');
   $entryFormDiv.classList.add('hidden');
   $entriesDiv.classList.remove('hidden');
+
 }
 
 $confirmButton.addEventListener('click', deleteEntry);
